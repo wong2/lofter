@@ -6,4 +6,7 @@ lofter posts scraper in Elixir
 
     mix deps.get
     mix escript.build
-    ./lofter [-d output_directory] blog_name
+
+    ./lofter blog_name
+
+    check options with ./lofter
