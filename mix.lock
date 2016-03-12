@@ -1,0 +1,11 @@
+%{"certifi": {:hex, :certifi, "0.3.0"},
+  "floki": {:hex, :floki, "0.8.0"},
+  "hackney": {:hex, :hackney, "1.4.10"},
+  "httpoison": {:hex, :httpoison, "0.8.1"},
+  "idna": {:hex, :idna, "1.1.0"},
+  "mimerl": {:hex, :mimerl, "1.0.2"},
+  "mochiweb_html": {:hex, :mochiweb_html, "2.13.0"},
+  "parallel": {:git, "https://github.com/eproxus/parallel.git", "08337182573befc55f4aea835b0f68c686d57002", [ref: "08337182573befc55f4aea835b0f68c686d57002"]},
+  "poison": {:git, "https://github.com/devinus/poison.git", "7a7882e8b9877c8868eabaa6b005c813f8d6dc6b", [tag: "2.1.0"]},
+  "poolboy": {:hex, :poolboy, "1.5.1"},
+  "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"}}
