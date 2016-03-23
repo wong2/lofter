@@ -20,7 +20,7 @@ defmodule Lofter.Blog do
   def get_post_ids(blog_uid, limit) do
     blog_id = get_blog_id(blog_uid)
     Logger.debug "#{blog_uid}'s id is #{blog_id}"
-    post_ids = fetch_post_ids(blog_uid, blog_id, limit)
+    fetch_post_ids(blog_uid, blog_id, limit)
   end
 
   def fetch_post_ids(blog_uid, blog_id, limit) do
@@ -41,11 +41,11 @@ defmodule Lofter.Blog do
     {:ok, response} = HTTPoison.post(url, payload, headers, timeout: 30000)
     Regex.scan(~r/\.permalink\s*=\s*"(\w+)"/, response.body)
     |> Enum.map(fn([_, post_id]) -> post_id end)
-    |> Enum.sort_by(fn(post_id) -> post_id_to_integer(post_id) end, &</2)
+    |> Enum.sort_by(&post_id_to_integer/1, &>/2)
   end
 
   defp post_id_to_integer(post_id) do
-    post_id |> String.split("_") |> List.first |> String.to_integer(16)
+    post_id |> String.split("_") |> List.last |> String.to_integer(16)
   end
 
 end

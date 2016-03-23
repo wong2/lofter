@@ -53,9 +53,10 @@ defmodule Lofter do
   end
 
   def get_post_datas(post_ids, blog_uid, concurrency) do
-    Parallel.map(post_ids, fn(post_id) ->
+    post_ids
+    |> Enum.map(fn (post_id) ->
       Lofter.Post.get_post_data(blog_uid, post_id)
-    end, size: concurrency)
+    end)
   end
 
 end
