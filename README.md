@@ -9,4 +9,4 @@ lofter posts scraper in Elixir
 
     ./lofter blog_name
 
-    check options with ./lofter
+check out more options with `./lofter`
