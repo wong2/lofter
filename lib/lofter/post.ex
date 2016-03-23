@@ -25,7 +25,7 @@ defmodule Lofter.Post do
 
   def extract_image_urls(html) do
     html
-    |> find_by_attr_pattern("img", "src", ~r/imglf\d.ph.(126|127).net/)
+    |> find_by_attr_pattern("img", "src", ~r/imglf\d.\w+.(126|127).net/)
     |> Floki.attribute("src")
     |> Enum.map(&Lofter.Utils.strip_query_string/1)
   end
