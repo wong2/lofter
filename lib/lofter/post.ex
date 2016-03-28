@@ -6,7 +6,7 @@ defmodule Lofter.Post do
     post_url
     |> fetch
     |> extract
-    |> Map.merge(%{id: post_id, url: post_url})
+    |> Map.merge(%{post_id: post_id, id: Lofter.Utils.post_id_to_integer(post_id), url: post_url})
   end
 
   def fetch(post_url, timeout \\ 20000) do

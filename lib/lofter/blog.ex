@@ -41,11 +41,7 @@ defmodule Lofter.Blog do
     {:ok, response} = HTTPoison.post(url, payload, headers, timeout: 30000)
     Regex.scan(~r/\.permalink\s*=\s*"(\w+)"/, response.body)
     |> Enum.map(fn([_, post_id]) -> post_id end)
-    |> Enum.sort_by(&post_id_to_integer/1, &>/2)
-  end
-
-  defp post_id_to_integer(post_id) do
-    post_id |> String.split("_") |> List.last |> String.to_integer(16)
+    |> Enum.sort_by(&Lofter.Utils.post_id_to_integer/1, &>/2)
   end
 
 end
