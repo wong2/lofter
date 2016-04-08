@@ -1,12 +1,12 @@
 defmodule Lofter.Post do
   require Logger
 
-  def get_post_data(blog_uid, post_id) do
-    post_url = "http://#{blog_uid}.lofter.com/post/#{post_id}"
-    post_url
-    |> fetch
-    |> extract
-    |> Map.merge(%{post_id: post_id, id: Lofter.Utils.post_id_to_integer(post_id), url: post_url})
+  def format_url(blog_uid, post_uid) do
+    "http://#{blog_uid}.lofter.com/post/#{post_uid}"
+  end
+
+  def get_post_data(post_url) do
+    post_url |> fetch |> extract |> Map.merge(%{url: post_url})
   end
 
   def fetch(post_url, timeout \\ 20000) do

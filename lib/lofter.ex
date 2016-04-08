@@ -38,25 +38,10 @@ defmodule Lofter do
 
   def dumps(blog_uid, path, concurrency, limit) do
     content = blog_uid
-              |> scrape_posts(concurrency, limit)
+              |> Lofter.Blog.get_posts(concurrency, limit)
               |> Poison.encode_to_iodata!
     File.write!(path, content)
     Logger.info "Blog posts #{blog_uid} dumped at #{path}"
-  end
-
-  def scrape_posts(blog_uid, concurrency, limit) do
-    Logger.info "Starting scrape #{blog_uid}"
-    post_ids = Lofter.Blog.get_post_ids(blog_uid, limit)
-
-    Logger.info "Total posts: #{length(post_ids)}"
-    get_post_datas(post_ids, blog_uid, concurrency)
-  end
-
-  def get_post_datas(post_ids, blog_uid, concurrency) do
-    post_ids
-    |> Enum.map(fn (post_id) ->
-      Lofter.Post.get_post_data(blog_uid, post_id)
-    end)
   end
 
 end
